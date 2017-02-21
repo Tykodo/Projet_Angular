@@ -1,0 +1,31 @@
+<section>
+	<ul class="nav nav-pills">
+		<li ng-class="{ active:panel.isSelected(1)}"><a href
+			data-ng-click="panel.selectTab(1)">Maker</a></li>
+		<li ng-class="{ active:panel.isSelected(2)}"><a href
+			data-ng-click="panel.selectTab(2)">Operating system</a></li>
+		<li ng-class="{ active:panel.isSelected(3)}"><a href
+			data-ng-click="panel.selectTab(3)">Edit phone</a></li>
+	</ul>
+
+	<div class="panel" ng-show="panel.isSelected(1)">
+		<blockquote>{{phone.maker}}</blockquote>
+	</div>
+	<div class="panel" ng-show="panel.isSelected(2)">
+		<blockquote>{{phone.os}}</blockquote>
+	</div>
+	<div class="panel" ng-show="panel.isSelected(3)">
+		<blockquote>
+		
+		<form name="phoneForm" ng-controller="PhoneController as phoneCtrl"
+			ng-submit="phoneCtrl.editPhone(phone)">
+			<br><input ng-model="phoneCtrl.phone.name" placeholder={{phone.name}} required></input></br>
+			<br><input ng-model="phoneCtrl.phone.maker" placeholder={{phone.maker}} required></input></br>
+			<br><input ng-model="phoneCtrl.phone.os" placeholder={{phone.os}} required></input></br>
+			<br><input ng-model="phoneCtrl.phone.price" placeholder={{phone.price}} required></input></br>
+			<br><input type="submit" value="Submit" /></br>
+		</form>
+		
+		</blockquote>
+	</div>
+</section>

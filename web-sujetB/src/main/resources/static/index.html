@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="store">
+<head>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+</head>
+<body data-ng-controller="StoreController as store">
+
+	<ul class="list-group">
+		<li class="list-group-item"
+			data-ng-repeat="phone in store.phones | orderBy: '-price'">
+			<h3>
+				{{phone.name}} <em class="pull-right">${{phone.price}}</em>
+			</h3> 
+			<em class="pull-right" ng-controller="PhoneController as phoneCtrl">
+				<button ng-click="phoneCtrl.removePhone(phone)">Delete</button>
+			</em> 
+			<phone-panel></phone-panel>
+		</li>
+	</ul>
+	
+	<blockquote><form name="phoneForm" ng-controller="PhoneController as phoneCtrl"
+			ng-submit="phoneCtrl.addPhone(phone)">
+			<label>Name: </label> 
+			<input ng-model="phoneCtrl.phone.name" required></input>
+			<label>Maker: </label>
+			<input ng-model="phoneCtrl.phone.maker" required></input>
+			<label>System: </label>
+			<input ng-model="phoneCtrl.phone.os" required></input>
+			<label>Price: </label>
+			<input ng-model="phoneCtrl.phone.price" required></input>
+			<input type="submit" value="Add to Store" />
+		</form></blockquote>
+		<br></br>
+		
+
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="app/app.js"></script>
+</body>
+</html>
